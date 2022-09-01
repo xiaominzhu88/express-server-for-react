@@ -3,14 +3,20 @@ import { useEffect, useState } from 'react';
 
 function App() {
 	const [expressData, setExpressData] = useState(null);
-	useEffect(() => {
-		fetch('http://localhost:5000/whoisthere')
-			.then((response) => response.json())
-			// Setting data to express_message that we received from the response
-			.then((data) => setExpressData(data))
-			.catch((e) => {
-				console.log('e:', e);
+
+	const fetchExpressData = async () => {
+		try {
+			const response = await fetch('http://localhost:5000/whoisthere', {
+				mode: 'cors',
 			});
+			const data = await response.json();
+			setExpressData(data);
+		} catch (e) {
+			console.log(e);
+		}
+	};
+	useEffect(() => {
+		fetchExpressData();
 	}, []);
 
 	return (

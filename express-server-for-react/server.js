@@ -3,7 +3,7 @@ const app = express();
 const cors = require('cors');
 const port = process.env.PORT || 5000;
 
-const filepath = '/4loladrink.jpg';
+const imagePath = '/4loladrink.jpg';
 
 app.use(
 	cors({
@@ -18,6 +18,6 @@ app.listen(port, () => console.log(`App listening on port ${port}`));
 app.get('/whoisthere', (req, res) => {
 	res.send({
 		express_message: 'HELLO I AM LOLA FROM EXPRESS BACKEND 🙌',
-		express_image: filepath,
+		express_image: imagePath,
 	});
 });
